@@ -6,11 +6,10 @@ import {
   HStack,
   Image,
   Tag,
-  Text,
 } from '@chakra-ui/react';
 import { MapPin, ShoppingCart } from 'phosphor-react';
 import { useContext } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { CoffeContext } from '../contexts/CoffeContext';
 
 export const Header = () => {
@@ -49,6 +48,8 @@ export const Header = () => {
             transition="filter 0.3s"
             _hover={{ filter: 'brightness(90%)' }}
             pos="relative"
+            as={Link}
+            to="/checkout"
           >
             <ShoppingCart size={22} weight="fill" />
             {cartProductsAmount > 0 && (

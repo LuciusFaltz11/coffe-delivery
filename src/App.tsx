@@ -4,6 +4,7 @@ import { CoffeProvider } from './contexts/CoffeContext';
 import { Route, Routes } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Catalog } from './pages/Catalog';
+import { Checkout } from './pages/Checkout';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Header />}>
             <Route path="/" element={<Catalog />} />
+            <Route path="/checkout" element={<Checkout />} />
           </Route>
         </Routes>
       </CoffeProvider>
