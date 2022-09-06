@@ -23,7 +23,7 @@ export const AddressForm = () => {
           </Text>
         </Box>
       </HStack>
-      <Box as="form" mt={8}>
+      <Box mt={8}>
         <Grid templateColumns="200px 1fr 60px" rowGap={4} columnGap={3}>
           <GridItem colSpan={3}>
             <Input placeholder="CEP" w="200px" />

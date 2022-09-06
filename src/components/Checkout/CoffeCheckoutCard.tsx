@@ -18,8 +18,11 @@ export const CoffeCheckoutCard = ({
   quantity,
   value,
 }: CoffeCheckoutCardProps) => {
-  const { increaseQuantityOfProductOnCart, decreaseQuantityOfProductOnCart } =
-    useContext(CoffeContext);
+  const {
+    increaseQuantityOfProductOnCart,
+    decreaseQuantityOfProductOnCart,
+    removeItemOfCart,
+  } = useContext(CoffeContext);
   return (
     <Flex
       justify="space-between"
@@ -76,6 +79,7 @@ export const CoffeCheckoutCard = ({
               _hover={{
                 filter: 'brightness(0.9)',
               }}
+              onClick={() => removeItemOfCart(id)}
             >
               <Trash size={16} color="#8047F8" /> REMOVER
             </Button>

@@ -23,6 +23,16 @@ interface CoffeProviderProps {
   children: ReactNode;
 }
 
+interface ShoppingProps {
+  complement?: string | undefined;
+  number: string;
+  cep: string;
+  street: string;
+  district: string;
+  city: string;
+  uf: string;
+}
+
 interface CoffeContextType {
   cart: Product[];
   handleAddProductOnCart: (product: Coffes, quantity: number) => void;
@@ -31,6 +41,9 @@ interface CoffeContextType {
   paymentMethod: string;
   decreaseQuantityOfProductOnCart: (id: string) => void;
   increaseQuantityOfProductOnCart: (id: string) => void;
+  removeItemOfCart: (id: string) => void;
+  createNewShopping: (data: ShoppingProps) => void;
+  shoppingForm: ShoppingProps;
 }
 
 export const CoffeContext = createContext({} as CoffeContextType);
@@ -39,6 +52,9 @@ export const CoffeProvider = ({ children }: CoffeProviderProps) => {
   const [cart, setCart] = useState<Product[]>([]);
   const [paymentMethod, setPaymentMethod] = useState('');
   const [cartProductsAmount, setCartProductsAmount] = useState(0);
+  const [shoppingForm, setShoppingForm] = useState<ShoppingProps>(
+    {} as ShoppingProps
+  );
 
   const handleAddProductOnCart = (product: Coffes, quantity: number) => {
     const itemIndex = cart.findIndex((item) => item.id === product.id);
@@ -97,6 +113,15 @@ export const CoffeProvider = ({ children }: CoffeProviderProps) => {
     setCart([...newCart]);
   };
 
+  const createNewShopping = (data: ShoppingProps) => {
+    setShoppingForm(data);
+  };
+
+  const removeItemOfCart = (id: string) => {
+    const newCart = cart.filter((item) => item.id !== id);
+    setCart(newCart);
+  };
+
   return (
     <CoffeContext.Provider
       value={{
@@ -107,6 +132,9 @@ export const CoffeProvider = ({ children }: CoffeProviderProps) => {
         paymentMethod,
         decreaseQuantityOfProductOnCart,
         increaseQuantityOfProductOnCart,
+        createNewShopping,
+        shoppingForm,
+        removeItemOfCart,
       }}
     >
       {children}

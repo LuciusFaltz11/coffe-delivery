@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Catalog } from './pages/Catalog';
 import { Checkout } from './pages/Checkout';
+import { Success } from './pages/Success';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Header />}>
             <Route path="/" element={<Catalog />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/success" element={<Success />} />
           </Route>
         </Routes>
       </CoffeProvider>
